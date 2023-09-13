@@ -1,22 +1,32 @@
 import requests
 from config import trello_config
-import json
-from scripts.create_trello_card import create_card, get_card, create_checklist
+from scripts.create_trello_card import create_card, create_checklist, create_checklist_item
+from scripts.parse_markdown import parse_markdown 
 
-API_KEY = "API_KEY"
-TOKEN = "TOKEN"
+def main():
+    # Step 1: Parse the markdown file to get the list ID and card details
+    list_id, cards_details = parse_markdown('path/to/your/markdown/file.md')
 
-BASE_URL = "https://api.trello.com/1"
+    # Step 2: Loop through each card's details and create cards and checklists on Trello
+    for card_details in cards_details:
+        card_title = card_details['title']
+        card_description = card_details['description']
+        
+        # Step 2.1: Create a card on Trello
+        response = create_card(list_id, card_title, card_description)
+        card_id = response['id']
+
+        for checklist in card_details['checklists']:
+            checklist_name = checklist['title']
+            checklist_response = create_checklist(card_id, checklist_name)
+            checklist_id = checklist_response['id']  # Get the ID of the created checklist
+
+            # Loop through checklist['items'] to add each item to the checklist
+            for item in checklist['items']:
+                create_checklist_item(checklist_id, item)
+
+    print("Cards and checklists created successfully.")
 
 if __name__ == "__main__":
-    # Replace 'list_id_here' with the actual list ID and 'Card Name' with the desired card name
-    card_response = create_card('list_id_here', 'Card Name', 'Card Description')
-    card_id = card_response['id']
+    main()
 
-    # Getting card details
-    card_details = get_card(card_id)
-    print(json.dumps(card_details, indent=4))
-
-    # Creating a checklist on the card
-    checklist_response = create_checklist(card_id, 'Checklist Name')
-    print(json.dumps(checklist_response, indent=4))
