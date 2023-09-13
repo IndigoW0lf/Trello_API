@@ -1,5 +1,5 @@
 import requests
-from trello_api_project.config.trello_config import API_KEY, API_TOKEN, BOARD_ID
+from config.trello_config import API_KEY, API_TOKEN, BOARD_ID
 
 def get_list_details():
     url = f"https://api.trello.com/1/boards/{BOARD_ID}/lists"

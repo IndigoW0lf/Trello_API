@@ -1,11 +1,10 @@
-import requests
-from config import trello_config
 from scripts.create_trello_card import create_card, create_checklist, create_checklist_item
 from scripts.parse_markdown import parse_markdown 
 
 def main():
+    print("Starting script...")
     # Step 1: Parse the markdown file to get the list ID and card details
-    list_id, cards_details = parse_markdown('path/to/your/markdown/file.md')
+    list_id, cards_details = parse_markdown('markdown_files/trello_test.md')
 
     # Step 2: Loop through each card's details and create cards and checklists on Trello
     for card_details in cards_details:
