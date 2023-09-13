@@ -24,3 +24,6 @@ def get_list_details():
     list_id_mapping = {list_detail['name']: list_detail['id'] for list_detail in lists_details}
     
     return list_id_mapping
+
+if __name__ == "__main__":
+    print(get_list_details())
