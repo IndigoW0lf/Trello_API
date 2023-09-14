@@ -158,6 +158,7 @@ As we further develop this project, it would be beneficial to include functional
 - Expanding the script to manage more aspects of Trello boards and lists.
 
 Feel free to fork the project and propose new features, or contribute in any way you see fit!
+Here's the [Trello API Docs](https://developer.atlassian.com/cloud/trello/rest/api-group-tokens/#api-group-tokens)
 
 ## Conclusion
 
