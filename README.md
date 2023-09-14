@@ -49,23 +49,37 @@ To get this project up and running on your system, make sure you have a code edi
    trello_config.py
    ```
 
-6. **Get Trello API Key:** You will need to get an API key from Trello. Create a new Trello power-up to get your API key. For the required URL field, you can use a placeholder like `http://example.com`. Detailed steps can be found in the [Trello API Documentation](https://developer.atlassian.com/cloud/trello/guides/rest-api/api-introduction/).
+6: **Create and Activate a Trello Power-Up**
 
-7. **Setup Configuration File:** Create a `trello_config.py` file inside the `config` folder to store sensitive variables such as your API key and token. After getting your API key, you can obtain your token by visiting the following URL:
-
+   To access the Trello API, you'll need to create a Power-Up. Follow these steps to set up and activate your Power-Up:
+   
+   1. Visit the [Trello Power-Up administration page](https://trello.com/power-ups/admin).
+   2. Click on the 'Create New Power-Up' button.
+   3. If it is your first time creating a power-up, you might need to agree to Trello's API terms of service.
+   4. You will be presented with a form to create your new Power-Up. Here's how to fill in some of the fields:
+      - **Name**: Give your Power-Up a name (e.g., My Trello API Power-Up).
+      - **Author**: Your name or your organization's name.
+      - **Email**: Your contact email.
+      - **Overview**: A brief description of what your Power-Up does (or not, lol).
+      - **Description**: A detailed description of your Power-Up (or leave blank like I did).
+      - **Icon URL**: You can leave this blank or put any image URL.
+      - **Iframe Connector URL**: Here, you can put any URL (e.g., https://example.com) since it's not used in this project.
+   5. Click 'Save' to create your Power-Up.
+   6. Now, note down the API key. You can generate a token by visiting the following URL, replacing `YOUR_API_KEY_HERE` with the API key you just noted down:
+   
    ```
    https://trello.com/1/authorize?expiration=1day&name=MyPersonalToken&scope=read,write&response_type=token&key=YOUR_API_KEY_HERE
    ```
 
-   Replace `YOUR_API_KEY_HERE` with the API key you obtained in step 6. This will guide you through a process to grant access and retrieve your token.
+7. **Activate Your Power-Up**: Go to your Trello board and click on the 'Power Ups' button (usually found on the top right corner). Hit the blue 'Add Powerups' button. To the left click the 'custom' section, find and activate the Power-Up you just created.
 
-   Here's a sample setup for the `trello_config.py`:
+Remember to store your API key and token in the `config/trello_config.py` file. This file should look something like this:
 
-   ```python
-   API_KEY = 'your_trello_api_key'
-   API_TOKEN = 'your_trello_api_token'
-   BOARD_ID = 'your_trello_board_id'
-   ```
+```python
+API_KEY = "your_api_key_here"
+API_TOKEN = "your_api_token_here"
+BOARD_ID = "your_board_id_here"
+```
 
 8. **Get Board and List Details:** To get your board ID, you can find it in the URL of your Trello board. The URL structure is usually `https://trello.com/b/YOUR_BOARD_ID/your-board-name`. Once you have your board ID, use the `get_list_details` function (explained in the next section) to retrieve the IDs of your lists. Copy this information into the `list_id_mapping.py` file in your `config` folder.
 
