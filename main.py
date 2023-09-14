@@ -4,7 +4,7 @@ from scripts.parse_markdown import parse_markdown
 def main():
     print("Starting script...")
     # Step 1: Parse the markdown file to get the list ID and card details
-    list_id, cards_details = parse_markdown('markdown_files/trello_test.md')
+    list_id, cards_details = parse_markdown('markdown_files/xml.md')
 
     # Step 2: Loop through each card's details and create cards and checklists on Trello
     for card_details in cards_details:
